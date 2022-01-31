@@ -34,3 +34,6 @@
 # IDE specific files and folders
 .idea/*
 cmake-build-debug/*
+
+# Build temporary files
+build/*
