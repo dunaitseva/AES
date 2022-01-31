@@ -9,10 +9,10 @@
 namespace crypto {
 class Rijndael : public BaseBlockCipher<RIJNDAEL_BLOCK_SIZE, RIJNDAEL_KEY_SIZE> {
  public:
-  std::array<std::byte, RIJNDAEL_BLOCK_SIZE> Encrypt(const std::array<std::byte, RIJNDAEL_BLOCK_SIZE> &block,
-											const std::array<std::byte, RIJNDAEL_KEY_SIZE> &key) override;
-  std::array<std::byte, RIJNDAEL_BLOCK_SIZE> Decrypt(const std::array<std::byte, RIJNDAEL_BLOCK_SIZE> &block,
-													 const std::array<std::byte, RIJNDAEL_KEY_SIZE> &key) override;
+  std::array<Byte, RIJNDAEL_BLOCK_SIZE> Encrypt(const std::array<Byte, RIJNDAEL_BLOCK_SIZE> &block,
+											const std::array<Byte, RIJNDAEL_KEY_SIZE> &key) override;
+  std::array<Byte, RIJNDAEL_BLOCK_SIZE> Decrypt(const std::array<Byte, RIJNDAEL_BLOCK_SIZE> &block,
+													 const std::array<Byte, RIJNDAEL_KEY_SIZE> &key) override;
 
  private:
   [[maybe_unused]] void addRoundKey();

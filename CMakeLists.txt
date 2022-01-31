@@ -22,20 +22,26 @@ FetchContent_Declare(
         URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
 )
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+set(CTEST_SOURCE_DIRECTORY tests)
+
+
 FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-#add_executable(
-#        hello_test
-#        tests/test.cpp
-#)
-#
-#target_link_libraries(
-#        hello_test
-#        gtest_main
-#)
+set(STATE StateTests)
+set(KEY_SCHEDULE KeyScheduleTests)
+
+add_executable(${STATE} ${CTEST_SOURCE_DIRECTORY}/${STATE}.cpp)
+target_link_libraries(${STATE} gtest_main)
+target_link_libraries(${STATE} ${PROJECT_NAME})
+
+add_executable(${KEY_SCHEDULE} ${CTEST_SOURCE_DIRECTORY}/${KEY_SCHEDULE}.cpp)
+target_link_libraries(${KEY_SCHEDULE} gtest_main)
+target_link_libraries(${KEY_SCHEDULE} ${PROJECT_NAME})
+
+set(ALL_TESTS ${STATE} ${KEY_SCHEDULE})
 
 include(GoogleTest)
-gtest_discover_tests(hello_test)
+gtest_discover_tests(${ALL_TESTS})
 endif()

@@ -1,17 +1,18 @@
 #include "Rijndael.hpp"
+#include "BaseBlockCipher.hpp"
 
 namespace crypto {
-std::array<std::byte, RIJNDAEL_BLOCK_SIZE> Rijndael::Encrypt([[maybe_unused]] const std::array<std::byte,
-																							   RIJNDAEL_BLOCK_SIZE> &block,
-															 [[maybe_unused]] const std::array<std::byte,
-																							   RIJNDAEL_KEY_SIZE> &key) {
+std::array<Byte, RIJNDAEL_BLOCK_SIZE> Rijndael::Encrypt([[maybe_unused]] const std::array<Byte,
+																						  RIJNDAEL_BLOCK_SIZE> &block,
+														[[maybe_unused]] const std::array<Byte,
+																						  RIJNDAEL_KEY_SIZE> &key) {
   return {};
 }
 
-std::array<std::byte, RIJNDAEL_BLOCK_SIZE> Rijndael::Decrypt([[maybe_unused]] const std::array<std::byte,
-																							   RIJNDAEL_BLOCK_SIZE> &block,
-															 [[maybe_unused]] const std::array<std::byte,
-																							   RIJNDAEL_KEY_SIZE> &key) {
+std::array<Byte, RIJNDAEL_BLOCK_SIZE> Rijndael::Decrypt([[maybe_unused]] const std::array<Byte,
+																						  RIJNDAEL_BLOCK_SIZE> &block,
+														[[maybe_unused]] const std::array<Byte,
+																						  RIJNDAEL_KEY_SIZE> &key) {
   return {};
 }
 
