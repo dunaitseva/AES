@@ -5,7 +5,6 @@
 #include "RijndaelBaseDefinitions.hpp"
 
 #include <array>
-#include <cstddef>
 
 TEST(StateConstructor, BlockToStateAngles) {
   std::array<crypto::Byte, crypto::RIJNDAEL_BLOCK_SIZE>
