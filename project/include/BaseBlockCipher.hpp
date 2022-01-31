@@ -1,12 +1,15 @@
 #pragma once
 
-#include <string_view>
+#include <cstddef>
+#include <array>
 
 namespace crypto {
+template<size_t BLOCK_SIZE, size_t KEY_SIZE>
 class BaseBlockCipher {
  public:
-  virtual std::string_view Encrypt(const std::string_view &block, const std::string_view &key) = 0;
-  virtual std::string_view Decrypt(const std::string_view &block, const std::string_view &key) = 0;
- private:
+  virtual std::array<std::byte, BLOCK_SIZE> Encrypt(const std::array<std::byte, BLOCK_SIZE> &block,
+													const std::array<std::byte, KEY_SIZE> &key) = 0;
+  virtual std::array<std::byte, BLOCK_SIZE> Decrypt(const std::array<std::byte, BLOCK_SIZE> &block,
+													const std::array<std::byte, KEY_SIZE> &key) = 0;
 };
 } // namespace crypto

@@ -1,11 +1,17 @@
 #include "Rijndael.hpp"
 
 namespace crypto {
-std::string_view Rijndael::Encrypt([[maybe_unused]] const std::string_view &block, [[maybe_unused]] const std::string_view &key) {
+std::array<std::byte, RIJNDAEL_BLOCK_SIZE> Rijndael::Encrypt([[maybe_unused]] const std::array<std::byte,
+																							   RIJNDAEL_BLOCK_SIZE> &block,
+															 [[maybe_unused]] const std::array<std::byte,
+																							   RIJNDAEL_KEY_SIZE> &key) {
   return {};
 }
 
-std::string_view Rijndael::Decrypt([[maybe_unused]] const std::string_view &block, [[maybe_unused]] const std::string_view &key) {
+std::array<std::byte, RIJNDAEL_BLOCK_SIZE> Rijndael::Decrypt([[maybe_unused]] const std::array<std::byte,
+																							   RIJNDAEL_BLOCK_SIZE> &block,
+															 [[maybe_unused]] const std::array<std::byte,
+																							   RIJNDAEL_KEY_SIZE> &key) {
   return {};
 }
 

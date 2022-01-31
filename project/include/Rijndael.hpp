@@ -3,11 +3,16 @@
 #include "BaseBlockCipher.hpp"
 #include "State.hpp"
 
+#include <array>
+#include <cstddef>
+
 namespace crypto {
-class Rijndael : public BaseBlockCipher {
+class Rijndael : public BaseBlockCipher<RIJNDAEL_BLOCK_SIZE, RIJNDAEL_KEY_SIZE> {
  public:
-  std::string_view Encrypt(const std::string_view &block, const std::string_view &key) override;
-  std::string_view Decrypt(const std::string_view &block, const std::string_view &key) override;
+  std::array<std::byte, RIJNDAEL_BLOCK_SIZE> Encrypt(const std::array<std::byte, RIJNDAEL_BLOCK_SIZE> &block,
+											const std::array<std::byte, RIJNDAEL_KEY_SIZE> &key) override;
+  std::array<std::byte, RIJNDAEL_BLOCK_SIZE> Decrypt(const std::array<std::byte, RIJNDAEL_BLOCK_SIZE> &block,
+													 const std::array<std::byte, RIJNDAEL_KEY_SIZE> &key) override;
 
  private:
   [[maybe_unused]] void addRoundKey();
