@@ -31,9 +31,7 @@ jobs:
         run: |
           cd build
           ./StateTests
-      - name: |
-          cd build
-          Run KesScheduleTests
+      - name: Run KesScheduleTests
         run: |
           cd build
           ./KeyScheduleTests
