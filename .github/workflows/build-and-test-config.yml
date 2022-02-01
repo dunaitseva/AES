@@ -1,0 +1,7 @@
+name: Building-and-testing-workflow
+on: [ push ]
+jobs:
+  Default-Job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Default CI template running"
