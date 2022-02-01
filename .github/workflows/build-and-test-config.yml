@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: mkdir build && cd build
-      - run: cmake ..
-      - run: make AES
+      - name: Building library
+        run: |
+          mkdir build
+          cd build
+          cmake ..
+          make AES
