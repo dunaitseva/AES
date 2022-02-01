@@ -11,6 +11,7 @@ constexpr uint_fast32_t NUMBER_OF_ROUNDS = 14;
 constexpr uint_fast32_t NUMBER_OF_COLUMNS = 4; // Number of columns (32-bit words) comprising the State.
 constexpr uint_fast32_t NUMBER_OF_STATE_ROWS = 4;
 constexpr uint_fast32_t NUMBER_OF_KEY = 8;     // Number of 32-bit words comprising the Cipher BaseKey.
+constexpr uint_fast32_t AMOUNT_OF_ROUND_KEYS = NUMBER_OF_COLUMNS * (NUMBER_OF_ROUNDS + 1);     // Number of 32-bit words comprising the Cipher BaseKey.
 
 // SBox and InvSBox helps to perform operations in GF(2 ^ 8) finite field.
 constexpr Byte SBox[] = {0x63, 0x7c, 0x77, 0x7b, 0xf2, 0x6b, 0x6f, 0xc5, 0x30, 0x01, 0x67, 0x2b, 0xfe, 0xd7, 0xab, 0x76,

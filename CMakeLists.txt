@@ -40,8 +40,8 @@ add_executable(${KEY_SCHEDULE} ${CTEST_SOURCE_DIRECTORY}/${KEY_SCHEDULE}.cpp)
 target_link_libraries(${KEY_SCHEDULE} gtest_main)
 target_link_libraries(${KEY_SCHEDULE} ${PROJECT_NAME})
 
-set(ALL_TESTS ${STATE} ${KEY_SCHEDULE})
-
 include(GoogleTest)
-gtest_discover_tests(${ALL_TESTS})
+
+gtest_discover_tests(${STATE})
+gtest_discover_tests(${KEY_SCHEDULE})
 endif()

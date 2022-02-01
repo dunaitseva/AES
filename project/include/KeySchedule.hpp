@@ -15,8 +15,8 @@ class KeySchedule {
   KeySchedule() = default;
   [[maybe_unused]] explicit KeySchedule(const std::array<Byte, RIJNDAEL_KEY_SIZE> &key);
 
-  std::array<RoundKey, NUMBER_OF_COLUMNS * (NUMBER_OF_ROUNDS + 1)> RoundKeys;
- private:
+  std::array<RoundKey, AMOUNT_OF_ROUND_KEYS> RoundKeys;
+ protected:
   [[maybe_unused]] void KeyExpansion(const std::array<Byte, RIJNDAEL_KEY_SIZE> &key);
   [[maybe_unused]] void SubWord(RoundKey &key);
   [[maybe_unused]] void RotWord(RoundKey &key);
