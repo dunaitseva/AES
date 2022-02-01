@@ -1,8 +1,8 @@
 name: Building-and-testing-workflow
 on: [ push ]
 jobs:
-  Default-Job:
-    runs-on: ubuntu-latest
+  Building:
+    runs-on: [self-hosted, ubuntu-latest, macos-latest]
     steps:
       - uses: actions/checkout@v2
       - run: ./scripts/recreate_build.sh
