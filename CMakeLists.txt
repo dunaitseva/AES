@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 project(AES)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS "-Werror -Wall -Wpedantic -Wextra")
+set(CMAKE_CXX_FLAGS "--coverage -Werror -Wall -Wpedantic -Wextra")
 
 set(PROJECT_SOURCE_DIR project/src)
 set(PROJECT_INCLUDE_DIR project/include)
