@@ -1,8 +1,14 @@
 name: Building-and-testing-workflow
 on: [ push ]
+defaults:
+  run:
+    shell: bash
 jobs:
   Building:
-    runs-on: [self-hosted, ubuntu-latest, macos-latest]
+    name: Build AES library
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: ./scripts/recreate_build.sh
+      - run: mkdir build && cd build
+      - run: cmake ..
+      - run: make AES
