@@ -15,3 +15,21 @@ jobs:
           cd build
           cmake ..
           make AES
+
+  Testing:
+    name: Run tests of AES
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build library and tests
+        run: |
+          mkdir build
+          cd build
+          cmake -DTESTING=ON ..
+          make
+      - name: Run StateTests
+        run: ./StateTests
+      - name: Run KesScheduleTests
+        run: ./KeyScheduleTests
+      - name: Run RijndaelTests
+        run: RijndaelTests
