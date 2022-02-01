@@ -19,9 +19,6 @@ jobs:
   Testing:
     name: Run tests of AES
     runs-on: ubuntu-latest
-    defaults:
-      run:
-
     steps:
       - uses: actions/checkout@v2
       - name: Build library and tests
