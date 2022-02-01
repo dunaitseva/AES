@@ -19,6 +19,9 @@ jobs:
   Testing:
     name: Run tests of AES
     runs-on: ubuntu-latest
+    defaults:
+      run:
+
     steps:
       - uses: actions/checkout@v2
       - name: Build library and tests
@@ -28,8 +31,16 @@ jobs:
           cmake -DTESTING=ON ..
           make
       - name: Run StateTests
-        run: ./StateTests
-      - name: Run KesScheduleTests
-        run: ./KeyScheduleTests
+        run: |
+          cd build
+          ./StateTests
+      - name: |
+          cd build
+          Run KesScheduleTests
+        run: |
+          cd build
+          ./KeyScheduleTests
       - name: Run RijndaelTests
-        run: RijndaelTests
+        run: |
+          cd build
+          ./RijndaelTests
