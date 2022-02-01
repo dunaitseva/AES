@@ -13,12 +13,12 @@ class KeySchedule {
   using RoundKey = std::array<Byte, NUMBER_OF_STATE_ROWS>;
 
   KeySchedule() = default;
-  [[maybe_unused]] explicit KeySchedule(const std::array<Byte, RIJNDAEL_KEY_SIZE> &key);
+  explicit KeySchedule(const std::array<Byte, RIJNDAEL_KEY_SIZE> &key);
 
   std::array<RoundKey, AMOUNT_OF_ROUND_KEYS> RoundKeys;
  protected:
-  [[maybe_unused]] void KeyExpansion(const std::array<Byte, RIJNDAEL_KEY_SIZE> &key);
-  [[maybe_unused]] void SubWord(RoundKey &key);
-  [[maybe_unused]] void RotWord(RoundKey &key);
+  void KeyExpansion(const std::array<Byte, RIJNDAEL_KEY_SIZE> &key);
+  void SubWord(RoundKey &key);
+  void RotWord(RoundKey &key);
 };
 } // namespace crypto

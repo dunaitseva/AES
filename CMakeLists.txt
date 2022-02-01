@@ -11,6 +11,7 @@ add_library(${PROJECT_NAME}
         ${PROJECT_SOURCE_DIR}/Rijndael.cpp
         ${PROJECT_SOURCE_DIR}/State.cpp
         ${PROJECT_SOURCE_DIR}/KeySchedule.cpp
+        ${PROJECT_SOURCE_DIR}/BaseCryptoUtils.cpp
         )
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_INCLUDE_DIR})
 
@@ -32,6 +33,7 @@ enable_testing()
 set(STATE StateTests)
 set(KEY_SCHEDULE KeyScheduleTests)
 set(RIJNDAEL RijndaelTests)
+set(BASE_CRYPTO_UTILS BaseCryptoUtilsTests)
 
 add_executable(${STATE} ${CTEST_SOURCE_DIRECTORY}/${STATE}.cpp)
 target_link_libraries(${STATE} gtest_main)
@@ -45,9 +47,15 @@ add_executable(${RIJNDAEL} ${CTEST_SOURCE_DIRECTORY}/${RIJNDAEL}.cpp)
 target_link_libraries(${RIJNDAEL} gtest_main)
 target_link_libraries(${RIJNDAEL} ${PROJECT_NAME})
 
+add_executable(${BASE_CRYPTO_UTILS} ${CTEST_SOURCE_DIRECTORY}/${BASE_CRYPTO_UTILS}.cpp)
+target_link_libraries(${BASE_CRYPTO_UTILS} gtest_main)
+target_link_libraries(${BASE_CRYPTO_UTILS} ${PROJECT_NAME})
+
 include(GoogleTest)
 
 gtest_discover_tests(${STATE})
 gtest_discover_tests(${KEY_SCHEDULE})
 gtest_discover_tests(${RIJNDAEL})
+gtest_discover_tests(${BASE_CRYPTO_UTILS})
+
 endif()
