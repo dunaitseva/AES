@@ -16,9 +16,11 @@ class Rijndael : public BaseBlockCipher<RIJNDAEL_BLOCK_SIZE, RIJNDAEL_KEY_SIZE> 
 
  private:
   [[maybe_unused]] void addRoundKey();
+
   [[maybe_unused]] void subBytes(State &state);
   [[maybe_unused]] void shiftRows(State &state);
   [[maybe_unused]] void mixColumns(State &state);
+
   [[maybe_unused]] void invSubBytes(State &state);
   [[maybe_unused]] void invShiftRows(State &state);
   [[maybe_unused]] void invMixColumns(State &state);
