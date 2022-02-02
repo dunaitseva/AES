@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 project(AES)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS "--coverage -Werror -Wall -Wpedantic -Wextra")
+set(CMAKE_CXX_FLAGS "-Werror -Wall -Wpedantic -Wextra")
 
 set(PROJECT_SOURCE_DIR project/src)
 set(PROJECT_INCLUDE_DIR project/include)
@@ -38,18 +38,40 @@ set(BASE_CRYPTO_UTILS BaseCryptoUtilsTests)
 add_executable(${STATE} ${CTEST_SOURCE_DIRECTORY}/${STATE}.cpp)
 target_link_libraries(${STATE} gtest_main)
 target_link_libraries(${STATE} ${PROJECT_NAME})
+set_source_files_properties(${STATE}
+        PROPERTIES
+        COMPILE_FLAGS "-ftest-coverage -fprofile-arcs"
+        LINK_FLAGS "-lgcov --coverage"
+        )
 
 add_executable(${KEY_SCHEDULE} ${CTEST_SOURCE_DIRECTORY}/${KEY_SCHEDULE}.cpp)
 target_link_libraries(${KEY_SCHEDULE} gtest_main)
 target_link_libraries(${KEY_SCHEDULE} ${PROJECT_NAME})
+set_source_files_properties(${KEY_SCHEDULE}
+        PROPERTIES
+        COMPILE_FLAGS "-ftest-coverage -fprofile-arcs"
+        LINK_FLAGS "-lgcov --coverage"
+        )
+
 
 add_executable(${RIJNDAEL} ${CTEST_SOURCE_DIRECTORY}/${RIJNDAEL}.cpp)
 target_link_libraries(${RIJNDAEL} gtest_main)
 target_link_libraries(${RIJNDAEL} ${PROJECT_NAME})
+set_source_files_properties(${RIJNDAEL}
+        PROPERTIES
+        COMPILE_FLAGS "-ftest-coverage -fprofile-arcs"
+        LINK_FLAGS "-lgcov --coverage"
+        )
 
 add_executable(${BASE_CRYPTO_UTILS} ${CTEST_SOURCE_DIRECTORY}/${BASE_CRYPTO_UTILS}.cpp)
 target_link_libraries(${BASE_CRYPTO_UTILS} gtest_main)
 target_link_libraries(${BASE_CRYPTO_UTILS} ${PROJECT_NAME})
+set_source_files_properties(${BASE_CRYPTO_UTILS}
+        PROPERTIES
+        COMPILE_FLAGS "-ftest-coverage -fprofile-arcs"
+        LINK_FLAGS "-lgcov --coverage"
+        )
+
 
 include(GoogleTest)
 

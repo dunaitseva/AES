@@ -40,26 +40,22 @@ jobs:
           cd build
           ./RijndaelTests
 
-#  CodeCoverage:
-#    name: Report code coverage
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@master
-#      - name: Build tests
-#        run: |
-#          ./scripts/recreate_build.sh
-#          cd build
-#          make
-#      - name: Run tests
-#        run: |
-#          cd build
-#          ctest
-#      - name: Put code coverage report in directory /AES/cov and generate reprot
-#        run: ./scripts/generate_coverage_report.sh
-#      - uses: codecov/codecov-action@v2
-#        with:
-#          flags: unittests
-#          files: ./cov/test-coverage.info
-#          name: codecov-umbrella
-#          fail_ci_if_error: true
-#          verbose: true
+  CodeCoverage:
+    name: Report code coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Build tests
+        run: |
+          ./scripts/recreate_build.sh
+          cd build
+          make
+      - name: Run tests
+        run: |
+          cd build
+          ctest
+      - name: Put code coverage report in directory /AES/cov and generate reprot
+        run: |
+          ./scripts/generate_coverage_report.sh
+          cd cov
+          bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
