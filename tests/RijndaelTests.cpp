@@ -2,6 +2,9 @@
 
 #include "Rijndael.hpp"
 
+#include <algorithm>
+#include <string_view>
+
 #include "State.hpp"
 
 constexpr std::array<crypto::Byte, crypto::RIJNDAEL_BLOCK_SIZE> originalBlock = {
@@ -172,4 +175,15 @@ TEST(RijndaelTestsDecrypt, DecryptMethodTesting) {
   crypto::Rijndael rijndael;
   std::array<crypto::Byte, crypto::RIJNDAEL_BLOCK_SIZE> outputResult = rijndael.Decrypt(cipherText, testKey);
   ASSERT_EQ(outputResult, plainText);
+}
+
+TEST(RijndaelTests, ArbitraryTextTesting) {
+  std::string_view text = "Some Text of 16";
+  std::array<crypto::Byte, crypto::RIJNDAEL_BLOCK_SIZE> textToBlock{};
+  std::transform(text.begin(), text.end(), textToBlock.begin(), [](const auto &ch) -> crypto::Byte { return ch; });
+
+  crypto::Rijndael rijndael;
+  std::array<crypto::Byte, crypto::RIJNDAEL_BLOCK_SIZE> cipher = rijndael.Encrypt(textToBlock, testKey);
+  std::array<crypto::Byte, crypto::RIJNDAEL_BLOCK_SIZE> plain = rijndael.Decrypt(cipher, testKey);
+  ASSERT_EQ(textToBlock, plain);
 }
