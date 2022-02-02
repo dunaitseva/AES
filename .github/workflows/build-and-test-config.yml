@@ -39,3 +39,15 @@ jobs:
         run: |
           cd build
           ./RijndaelTests
+
+  CodeCoverage:
+    name: Report code coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: codecov/codecov-action@v2
+        with:
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: true
+          verbose: true
