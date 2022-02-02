@@ -45,17 +45,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Build tests
+      - name: Build tests and measuring code coverage
         run: |
           ./scripts/recreate_build.sh
-          cd build
-          make
-      - name: Run tests
-        run: |
-          cd build
-          ctest
-      - name: Put code coverage report in directory /AES/cov and generate reprot
-        run: |
+          ./build/make
+          ./build/ctest
           ./scripts/generate_coverage_report.sh
-          cd cov
           bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
