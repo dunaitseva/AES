@@ -22,3 +22,11 @@ TEST(StateConstructor, BlockToStateCenter) {
   crypto::State currentState(testBlock);
   ASSERT_EQ(currentState.blockTable[1][1], testBlock[5]);
 }
+
+TEST(StateTesting, GetBlock) {
+  std::array<crypto::Byte, crypto::RIJNDAEL_BLOCK_SIZE>
+	  testBlock = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0xa, 0xb, 0xc, 0xd, 0xe, 0xf};
+  crypto::State testState(testBlock);
+  std::array<crypto::Byte, crypto::RIJNDAEL_BLOCK_SIZE> resultBlock = testState.GetBlock();
+  ASSERT_EQ(resultBlock, testBlock);
+}

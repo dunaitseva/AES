@@ -1,7 +1,65 @@
 name: Building-and-testing-workflow
 on: [ push ]
+defaults:
+  run:
+    shell: bash
 jobs:
-  Default-Job:
+  Building:
+    name: Build AES library
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Default CI template running"
+      - uses: actions/checkout@v2
+      - name: Building library
+        run: |
+          mkdir build
+          cd build
+          cmake ..
+          make AES
+
+  Testing:
+    name: Run tests of AES
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build library and tests
+        run: |
+          mkdir build
+          cd build
+          cmake -DTESTING=ON ..
+          make
+      - name: Run StateTests
+        run: |
+          cd build
+          ./StateTests
+      - name: Run KesScheduleTests
+        run: |
+          cd build
+          ./KeyScheduleTests
+      - name: Run RijndaelTests
+        run: |
+          cd build
+          ./RijndaelTests
+
+#  CodeCoverage:
+#    name: Report code coverage
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@master
+#      - name: Build tests
+#        run: |
+#          ./scripts/recreate_build.sh
+#          cd build
+#          make
+#      - name: Run tests
+#        run: |
+#          cd build
+#          ctest
+#      - name: Put code coverage report in directory /AES/cov and generate reprot
+#        run: ./scripts/generate_coverage_report.sh
+#      - uses: codecov/codecov-action@v2
+#        with:
+#          flags: unittests
+#          files: ./cov/test-coverage.info
+#          name: codecov-umbrella
+#          fail_ci_if_error: true
+#          verbose: true

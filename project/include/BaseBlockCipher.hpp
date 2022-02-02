@@ -10,8 +10,8 @@ template<size_t BLOCK_SIZE, size_t KEY_SIZE>
 class BaseBlockCipher {
  public:
   virtual std::array<Byte, BLOCK_SIZE> Encrypt(const std::array<Byte, BLOCK_SIZE> &block,
-													const std::array<Byte, KEY_SIZE> &key) = 0;
+													const std::array<Byte, KEY_SIZE> &key) const = 0;
   virtual std::array<Byte, BLOCK_SIZE> Decrypt(const std::array<Byte, BLOCK_SIZE> &block,
-													const std::array<Byte, KEY_SIZE> &key) = 0;
+													const std::array<Byte, KEY_SIZE> &key) const = 0;
 };
 } // namespace crypto
