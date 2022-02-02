@@ -47,8 +47,10 @@ jobs:
       - uses: actions/checkout@master
       - name: Build tests and measuring code coverage
         run: |
-          ./scripts/recreate_build.sh
-          ./build/make
-          ./build/ctest
+          mkdir build
+          cd build
+          cmake ..
+          make
+          cd ..
           ./scripts/generate_coverage_report.sh
           bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
