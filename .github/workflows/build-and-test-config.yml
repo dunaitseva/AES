@@ -53,5 +53,6 @@ jobs:
           cmake -DTESTING=ON ..
           make
           ctest
+          cd ..
           ./scripts/generate_coverage_report.sh
           bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
