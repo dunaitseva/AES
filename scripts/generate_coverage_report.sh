@@ -19,6 +19,6 @@ cp $pathRijndaelTests.gcno ./cov/RijndaelTests.cpp.gcno
 cp $pathKeyScheduleTests.gcno ./cov/KeyScheduleTests.cpp.gcno
 
 cd cov
-lcov -t "Test Coverage" -o test-coverage.info -c -d .
+lcov -t "Test Coverage" -o test-coverage.info -c -d ..
 lcov --list test-coverage.info
 #genhtml test-coverage.info --branch-coverage --output-directory ./code_coverage_report/
