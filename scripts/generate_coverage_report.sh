@@ -19,4 +19,4 @@ cp $pathStateTests.gcno ./cov/KeyScheduleTests.cpp.gcno
 
 cd cov
 lcov -t "Test Coverage" --capture --external -o test-coverage.info -c -d .
-genhtml test-coverage.info --branch-coverage --output-directory ./code_coverage_report/
+#genhtml test-coverage.info --branch-coverage --output-directory ./code_coverage_report/
