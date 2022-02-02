@@ -45,6 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      - uses: danielealbano/lcov-action@v1
       - name: Build tests and measuring code coverage
         run: |
           sudo apt install lcov
@@ -53,6 +54,5 @@ jobs:
           cmake -DTESTING=ON ..
           make
           ctest
-#          cd ..
           ../scripts/generate_coverage_report.sh
           bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
