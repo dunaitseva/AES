@@ -50,4 +50,5 @@ jobs:
       - name:  Getting code coverage data
         uses: codecov/codecov-action@v2
         with:
+          token: ff897e5c-ceb7-4d09-bf59-0b98873ba7fc
           files: coverage.xml
