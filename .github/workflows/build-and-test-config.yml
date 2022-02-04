@@ -48,6 +48,6 @@ jobs:
       - name: Build tests and generate coverage report
         run: ./scripts/coverage-report.sh
       - name:  Getting code coverage data
-      - uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v2
         with:
           files: coverage.xml
