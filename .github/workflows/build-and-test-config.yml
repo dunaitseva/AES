@@ -48,6 +48,7 @@ jobs:
       - name: Build tests and generate coverage report
         run: |
           pwd
+          ls -la
           ./scripts/coverage-report.sh
       - name:  Getting code coverage data
         uses: codecov/codecov-action@v2
