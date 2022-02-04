@@ -49,6 +49,7 @@ jobs:
         run: |
           pwd
           ls -la
+          ls -la scripts
           ./scripts/coverage-report.sh
       - name:  Getting code coverage data
         uses: codecov/codecov-action@v2
