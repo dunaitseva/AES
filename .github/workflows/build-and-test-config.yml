@@ -46,7 +46,9 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Build tests and generate coverage report
-        run: ./scripts/coverage-report.sh
+        run: |
+          pwd
+          ./scripts/coverage-report.sh
       - name:  Getting code coverage data
         uses: codecov/codecov-action@v2
         with:
