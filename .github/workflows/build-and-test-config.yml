@@ -57,6 +57,7 @@ jobs:
         run: sudo apt install cppcheck
       - name: Check project directory
         run: cppcheck project
+
   CodeCoverage:
     name: Report code coverage
     runs-on: ubuntu-latest
