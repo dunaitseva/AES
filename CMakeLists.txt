@@ -15,11 +15,15 @@ add_library(${PROJECT_NAME}
         )
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_INCLUDE_DIR})
 
-option(TESTING "If this flag is enabled, CMake build tests" OFF)
-if (${TESTING})
+option(COVERAGE OFF)
+if (${COVERAGE})
     target_compile_options(${PROJECT_NAME} PUBLIC "--coverage")
     target_link_libraries(${PROJECT_NAME} PUBLIC gcov)
+endif()
 
+option(SANITIZE OFF)
+option(TESTING "If this flag is enabled, CMake build tests" OFF)
+if (${TESTING})
     include(FetchContent)
     FetchContent_Declare(
             googletest
@@ -52,6 +56,18 @@ if (${TESTING})
     add_executable(${BASE_CRYPTO_UTILS} ${CTEST_SOURCE_DIRECTORY}/${BASE_CRYPTO_UTILS}.cpp)
     target_link_libraries(${BASE_CRYPTO_UTILS} gtest_main)
     target_link_libraries(${BASE_CRYPTO_UTILS} ${PROJECT_NAME})
+
+    if (${SANITIZE})
+        target_compile_options(${STATE} PUBLIC "-fsanitize=address")
+        target_compile_options(${KEY_SCHEDULE} PUBLIC "-fsanitize=address")
+        target_compile_options(${RIJNDAEL} PUBLIC "-fsanitize=address")
+        target_compile_options(${BASE_CRYPTO_UTILS} PUBLIC "-fsanitize=address")
+
+        target_link_libraries(${STATE} -fsanitize=address)
+        target_link_libraries(${KEY_SCHEDULE} -fsanitize=address)
+        target_link_libraries(${RIJNDAEL} -fsanitize=address)
+        target_link_libraries(${BASE_CRYPTO_UTILS} -fsanitize=address)
+    endif ()
 
     include(GoogleTest)
 
