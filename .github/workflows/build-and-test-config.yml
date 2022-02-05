@@ -48,6 +48,15 @@ jobs:
       - name: Run valgrind checks
         run: ./scripts/valgrind-check.sh
 
+  CppCheck:
+    name: Cppcheck executing
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install cppcheck
+        run: sudo apt install cppcheck
+      - name: Check project directory
+        run: cppcheck project
   CodeCoverage:
     name: Report code coverage
     runs-on: ubuntu-latest
