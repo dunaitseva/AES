@@ -1,15 +1,21 @@
 #!/bin/bash
 
-echo "Current directory: $(pwd)"
-rm -rf ./build
-mkdir build
-echo "Build directory recreated"
+BUILD_DIR="./build"
+LOG_FILE="./tmp/build.log"
+TMP_DIR="./tmp"
 
-cmake_keys="-DTESTING=ON"
-cd ./build || (echo "Directory was not created" && exit 127)
-echo "Start cmake scenario keys $cmake_keys"
-cmake $cmake_keys ..
+rm -rf $BUILD_DIR
+mkdir -p $TMP_DIR
+touch $LOG_FILE
+mkdir $BUILD_DIR && echo "Creating $BUILD_DIR directory"
 
-make
+CMAKE_KEYS="-DTESTING=ON"
+echo "CMakeFile.txt will execute with $CMAKE_KEYS options"
+
+echo "Executing CMakeFile.txt"
+cmake $CMAKE_KEYS -B $BUILD_DIR -S . >> $LOG_FILE || (echo "Error, check $LOG_FILE")
+
+echo "Build targets with make"
+make --directory=$BUILD_DIR >> $LOG_FILE || (echo "Error, check $LOG_FILE")
 
 echo "REBUILD FINISHED!"
