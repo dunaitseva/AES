@@ -10,4 +10,6 @@ cd ./build || (echo "Directory was not created" && exit 127)
 echo "Start cmake scenario keys $cmake_keys"
 cmake $cmake_keys ..
 
+make
+
 echo "REBUILD FINISHED!"
