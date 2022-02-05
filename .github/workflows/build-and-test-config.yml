@@ -40,6 +40,14 @@ jobs:
           cd build
           ./RijndaelTests
 
+  ValgrindCheck:
+    name: Memory leaks searching
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run valgrind checks
+        run: ./scripts/valgrind-check.sh
+
   CodeCoverage:
     name: Report code coverage
     runs-on: ubuntu-latest
