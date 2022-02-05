@@ -40,26 +40,15 @@ jobs:
           cd build
           ./RijndaelTests
 
-#  CodeCoverage:
-#    name: Report code coverage
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@master
-#      - name: Build tests
-#        run: |
-#          ./scripts/recreate_build.sh
-#          cd build
-#          make
-#      - name: Run tests
-#        run: |
-#          cd build
-#          ctest
-#      - name: Put code coverage report in directory /AES/cov and generate reprot
-#        run: ./scripts/generate_coverage_report.sh
-#      - uses: codecov/codecov-action@v2
-#        with:
-#          flags: unittests
-#          files: ./cov/test-coverage.info
-#          name: codecov-umbrella
-#          fail_ci_if_error: true
-#          verbose: true
+  CodeCoverage:
+    name: Report code coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Build tests and generate coverage report
+        run: ./scripts/coverage-report.sh
+      - name:  Getting code coverage data
+        uses: codecov/codecov-action@v2
+        with:
+          token: ff897e5c-ceb7-4d09-bf59-0b98873ba7fc
+          files: coverage.xml
