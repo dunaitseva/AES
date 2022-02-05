@@ -1,6 +1,12 @@
 #!/bin/bash
 
-sudo apt install valgrind > /dev/null && echo "valgrind is already installed" || echo "Error while installing valgrind"
+REQUIRED_PKG="valgrind"
+PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $REQUIRED_PKG|grep "install ok installed")
+echo Checking for $REQUIRED_PKG: $PKG_OK
+if [ "" = "$PKG_OK" ]; then
+  echo "No $REQUIRED_PKG. Setting up $REQUIRED_PKG."
+  sudo apt --yes install $REQUIRED_PKG
+fi
 
 BUILD_DIR="./build"
 VALGRIND_LOG_FILE="./tmp/valgrind-check.log"
@@ -9,7 +15,7 @@ TMP_DIR="./tmp"
 mkdir -p $TMP_DIR
 touch $VALGRIND_LOG_FILE
 
-./scripts/rebuild.sh
+./scripts/rebuild.sh -t
 
 diagnostic_message () {
   echo "Error, $1 valgrind check. Check log file $VALGRIND_LOG_FILE."
