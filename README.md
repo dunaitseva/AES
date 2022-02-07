@@ -10,6 +10,7 @@ Also, you can build tests using TESTING option.
 ### TO DO:
 I want to add some usage examples and stress tests for this project soon.
 
+![example workflow](https://github.com/dunaitseva/AES/actions/workflows/build-and-test-config.yml/badge.svg)
 [![codecov](https://codecov.io/gh/dunaitseva/AES/branch/main/graph/badge.svg?token=0002QPAO0Y)](https://codecov.io/gh/dunaitseva/AES)
 
 At the moment the actual architecture looks like this:
